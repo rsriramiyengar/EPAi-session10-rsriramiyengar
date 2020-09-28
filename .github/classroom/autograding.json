@@ -3,6 +3,7 @@
     {
       "name": "test_session10",
       "setup": "sudo -H pip3 install pytest",
+      "setup": "sudo -H pip3 install faker",	
       "run": "pytest",
       "input": "",
       "output": "",
