@@ -1,59 +1,62 @@
-# Readme File for Assignment for Session 4 - Numeric Types II
+# Readme File for Assignment for Session 10 - Tuples & Named Tuples and Modules
 ### Created by Sriram Iyengar
-## Session 4 - Numeric Types II
-- Floats: Coercing to Integer
-- Floats: Rounding
-- Decimals
-- Decimals: Constructors and Contexts
-- Decimals: Math Operations
-- Decimals: Performance Considerations
-- Complex Numbers
-- Booleans
-- Booleans: Precedence and Short-Circuiting
+## Session 10 - Tuples & Named Tuples and Modules
+- Tuples as a Data Structure
+- Named Tuple
+- Named Tuple - Modifying & Extending
+- Named Tuple - DocString & Default Values
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+##  Assignment Requirment 
+- Use Faker library to get 10000 random profiles. Using namedtuple, calculate the largest blood type, mean-current_location, oldest_person_age and average age (add proper doc-strings). - 250
+- Do the same thing above using a dictionary. Prove that namedtuple is faster. - 250
+- Create a fake data (you can use Faker for company names) for imaginary stock exchange for top 100 companies (name, symbol, open, high, close). Assign a random weight to all the companies. 
+  Calculate and show what value stock market started at, what was the highest value during the day and where did it end. Make sure your open, high, close are not totally random. You can only use namedtuple. - 500
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Functions/class in Assignment file
 
-## Class
-### Qualean
-    '''      
-    Write a Qualean class that is inspired by Boolean+Quantum concepts. 
-    We can assign it only 3 possible real states. True, False, and Maybe (1, 0, -1)
-    but it internally picks an imaginary state. The moment you assign it a real number,
-    it immediately finds an imaginary number random.uniform(-1, 1) and multiplies with 
-    it and stores that number internally after using Bankers rounding to 10th decimal place
-    '''
 
-### for  __and__ & __or__
-  - This is not implemented as it is a `bitwise &` operation not the `logical and` operation and the base datatype is of `Decimal` class.
-    A rejected PEP-335 (https://www.python.org/dev/peps/pep-0335/) does not allow the overloading of `logical and` operator.
+###  calculateage (birthDate: "date of birthof person") -> "Returns Age in years":
+- calculates age of person based on date of birth as input
+### class Fprofile (namedtuple('Fprofile', ('name', 'sex', 'birthdate', 'blood_group', 'current_location'))):
+##  calculateage(cls, fprofile) -> "Returns Age in years":
+- "This class method calculates age of given list of profile"
+##  aver_age (cls, fprofiles) -> 'This class method calculates average age of given list of profiles':
+-"This class method calculates average age of given list of profiles"
+##  max_age (cls, fprofiles) -> "Returns Max age of given list of profiles":
+- "This class method calculates max age of given list of profiles"
+##  mean_current_location (cls, fprofiles)
+- "This class methodReturns Mean current Location of given list of profiles"
+##  largest_blood_type(cls, fprofiles)
+- "Returns Largest Blood Group of given list of profiles"
+***Docstring for variables ***
+Fprofile.__doc__ = 'Profile of Employees/User'
+Fprofile.name.__doc__ = 'Name of Employees/User '
+Fprofile.sex.__doc__ = 'Sex of Employees/User'
+Fprofile.birthdate.__doc__ = 'Date of birth of Employees/User'
+Fprofile.blood_group.__doc__ = 'Blood group of Employees/User'
+Fprofile.current_location.__doc__ = 'Current location of Employees/User'
 
-### _/__repr__/_
-- This method returns the representation of the Qualean object and the value it contains in a nicely formatted string.
-### __str__
-- This method returns the `str` object of value of the Qualean object mentioned.
-### __add__
-- This method overrides the basic implementation of `addition +` operator for the `Qualean` class. It also extends to `int` objects.
-### __eq__
-- This method overrides the equality checking `==` for the user defined `Qualean ` objects.
-### __float__
-- This method returns the float conversion of the `Qualean` object.
-### __ge__
-- This method overrides the greater than or equal to checking `>=` for the user defined `Qualean ` objects.
-### __gt__
-- This method overrides the greater than checking `>` for the user defined `Qualean ` objects.
-### __invertsign__
-- This method returns the opposite sign of value of the calling `Qualean` object.
-### __le__
-- This method overrides the lesser than or equal to checking `<=` for the user defined `Qualean ` objects.
-### __lt__
-- This method overrides the lesser than checking `<` for the user defined `Qualean ` objects.
-### __mul__
-- This method overrides the basic implementation of `multiplication *` operator for the `Qualean` class. It also extends to `int` objects.
-### __sqrt__
-- This method implements the mathematical Square root operation on the `Qualean` object. 
-  It is implemented using `Context` class from the `decimal` module which contains the `sqrt` 
-  functionality with precision of 10 decimal places and rounded using `decimal.ROUND_HALF_EVEN`.
-### __bool__
--  This dunder method returns the `bool` value for the `Qualean` object.
+###  function_profile_creation (count: "Number of profile to be created using faker"):
+- "Returns  profile stored in named tuple and dictionary in list for user defined count"
+
+###  function_profile_data_tuple_process (LIST: "List of Named tuple"):
+    """
+    This function returns following for given list of profiles stores in Namedtuple
+    - Average age in given set of profiles
+    - Age of oldest person in given set of profiles
+    -mean location of  in given set of profiles
+    -largest_blood_type  in given set of profiles
+    """
+
+
+###  function_profile_data_dict_process (LIST_d: "List of dictionary"):
+    """
+    This function returns following for given list of profiles stores in Dictionary
+    - Average age in given set of profiles
+    - Age of oldest person in given set of profiles
+    -mean location of  in given set of profiles
+    -largest_blood_type  in given set of profiles
+    """
 
 
 ## Functions used in Test File
@@ -74,70 +77,13 @@
 ### test_function_name_had_cap_letter 
 - checks if the Assignment code is function has capital letters
 
-### test_function_100times_eq_100q 
-- checks the sum of 100 Qualean values
 
-### test_function_decimal_sqrt_check
-- checks sqrt function is working  in assignment
 
-### test_function_sum_million_q_eq_zero 
-- checks if sum of 1 million values is near to zero in assignment
 
-### test_function_q1_false_and_q2_not_defined 
-- checks the short circuit in boolen function in assignment
 
-### test_function_q1_True_or_q2_not_defined
-- checks the short circuit in boolen function  in assignment
-
-### test_function_Multiplication_mul 
-- checks the multiplaction function
-
-### test_function_invertsign 
-- checks the invertion function in assignment
-### test_function_float_conversion 
-- checks the Qualean to float function in assignment
-
-### test_function_greater 
-- checks the greater than function in assignment
-
-### test_function_greater_than_equal_to 
-- checks the greater than and equal to  function in assignment
-
-### test_function_lesser_than 
-- checks the less than  function in assignment
-
-### test_function_less_than_equal_to 
-- checks the less than and equal to  function in assignment
-
-### test_function_equality_true 
-- checks the equlity function for True case in assignment
-
-### test_function_equality_false 
-- checks the equlity   function for false case in assignment
-
-### test_function_qualean_bool 
-- checks the less boolean  function in assignment
-
-### test_function_valid_input 
-- checks if the function checks for valid input in assignment
-
-### test_function_invalid_integer_input 
-- checks if the function for invalid input in assignment
-
-### test_function_repr 
-- checks repr function in assignment
-
-### test_function_str 
-- checks Str function in assignment
-
-### test_function_add 
-- checks addition  function in assignment
-
-### test_function_bool 
-- checks bool  function in assignment
 
 ***
-> ![My Image](https://github.com/rsriramiyengar/EPAi-session4-rsriramiyengar/blob/master/images/Image01.JPG)
+> ![My Image](https://github.com/rsriramiyengar/EPAi-session10-rsriramiyengar/blob/master/images/Image01.JPG)
 ***
 
 We are using python >3.8.3
