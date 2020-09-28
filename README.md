@@ -57,6 +57,28 @@ Fprofile.current_location.__doc__ = 'Current location of Employees/User'
     -mean location of  in given set of profiles
     -largest_blood_type  in given set of profiles
     """
+### Stock_weight_norm = namedtuple('Stock_weight_norm', ('name', 'nw'))
+-Stock_weight_norm.__doc__ = 'Stock Weight Details for Day trade'
+-Stock_weight_norm.name.__doc__ = 'Name of Stock'
+-Stock_weight_norm.nw.__doc__ = 'Normilized weight of Stock that day'
+
+
+### class Stock (namedtuple('Stock', ('name', 'symbol', 'open', 'high', 'close', 'low', 'weight'))):
+## def normilized_weight(cls, stocks) -> "returns normalized values for ":
+-'This class method calculates normalized weights for given set of weights '
+## stock_ex_value(cls, stocks) -> "returns normalized values for ":
+- 'This class method calculates normalized weights for given set of weights '
+- Stock.__doc__ = 'Stock Detail for Day trade'
+- Stock.name.__doc__ = 'Name of Stock'
+- Stock.symbol.__doc__ = 'symbol of Stock'
+- Stock.open.__doc__ = 'Opening Value of Stock that day'
+- Stock.high.__doc__ = 'highest Value of Stock that day'
+- Stock.close.__doc__ = 'closing highest Value of Stock that day'
+- Stock.low.__doc__ = 'closing lowest Value of Stock that day'
+- Stock.weight.__doc__ = 'weight Stock that day'
+
+###  function_fstock_creation(count: "Number of stock to be created using faker"):
+    "Returns  profile stored in named tuple in list for user defined count"
 
 
 ## Functions used in Test File
@@ -77,10 +99,25 @@ Fprofile.current_location.__doc__ = 'Current location of Employees/User'
 ### test_function_name_had_cap_letter 
 - checks if the Assignment code is function has capital letters
 
+###  test_creation_profile():
+    """
+    This Test function checks if created profile are stored properly
+    """
 
+###  test_output_named_tuple_vs_dictionary():
+    """
+    This Test checks speed of Named tuple vs dictionary for 10000 profiles and 100 runs
+    """
 
+###  test_output_named_tuple_vs_dictionary():
+    """
+    This Test checks content of Named tuple vs dictionary for 1 profiles.
+    """
 
-
+###  test_stock_named_tuple_functions():
+    """
+    This Test Function checks the output of stock named tupple and its class method for 100 stocks.
+    """
 
 ***
 > ![My Image](https://github.com/rsriramiyengar/EPAi-session10-rsriramiyengar/blob/master/images/Image01.JPG)

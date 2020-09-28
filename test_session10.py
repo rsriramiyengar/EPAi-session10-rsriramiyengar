@@ -9,6 +9,9 @@ from session10 import Fprofile
 from session10 import function_profile_creation
 from session10 import function_profile_data_tuple_process
 from session10 import function_profile_data_dict_process
+from session10 import Stock_weight_norm
+from session10 import Stock
+from session10 import function_fstock_creation
 import os
 import inspect
 import re
@@ -31,6 +34,9 @@ README_CONTENT_CHECK_FOR = [
     'function_profile_creation',
     'function_profile_data_tuple_process',
     'function_profile_data_dict_process',
+    'Stock_weight_norm',
+    'Stock',
+    'function_fstock_creation'
 ]
 
 
@@ -76,6 +82,9 @@ def test_function_name_had_cap_letter():
         assert len(re.findall('([A-Z])', function[0])) == 0, "You have used Capital letter(s) in your function names"
 
 def test_creation_profile():
+    """
+    This Test function checks if created profile are stored properly
+    """
     LIST_tuple, LIST_dict = function_profile_creation(1)
     assert LIST_tuple[0][0]==LIST_dict[0]['name'] ,"Name is not getting stored properly"
     assert LIST_tuple[0][1] == LIST_dict[0]['sex'], "sex of profile is not getting stored properly"
@@ -112,5 +121,40 @@ def test_output_named_tuple_vs_dictionary():
     assert isclose(mean_current_location[1], mean_current_location_d[1]), "Mean location cannot be different for Named Tuple and Dictionary list"
     assert largest_blood_type == largest_blood_type_d, "Max Blood Type cannot be different for same group"
     assert delta2>delta1 ,"Dictionary cannot be faster than named tuple"
+
+
+def test_output_named_tuple_vs_dictionary():
+    """
+    This Test checks content of Named tuple vs dictionary for 1 profiles.
+    """
+    Stock_list,Stock_list_dict = function_fstock_creation(1)
+    assert Stock_list[0][0]==Stock_list_dict[0]['name'] ,"Name is not getting stored properly"
+    assert Stock_list[0][1] == Stock_list_dict[0]["symbol"], "symbol is not getting stored properly"
+    assert Stock_list[0][2] == Stock_list_dict[0]["open"], "open is not getting stored properly"
+    assert Stock_list[0][3] == Stock_list_dict[0]["high"], "high is not getting stored properly"
+    assert Stock_list[0][4] == Stock_list_dict[0]["close"], "close is not getting stored properly"
+    assert Stock_list[0][5] == Stock_list_dict[0]["low"], "low is not getting stored properly"
+    assert Stock_list[0][6] == Stock_list_dict[0]["weight"], "weight is not getting stored properly"
+
+def test_stock_named_tuple_functions():
+    """
+    This Test Function checks the output of stock named tupple and its class method for 100 stocks.
+    """
+    Stock_100, Stock_list_dic = function_fstock_creation(100)
+    nw_tab = Stock.normilized_weight(Stock_100)
+    Exch_open, Exch_high, Exch_close, Exch_low = Stock.stock_ex_value(Stock_100)
+    Exch_open1, Exch_high1, Exch_close1, Exch_low1 = 0, 0, 0, 0
+    for n in range(len(Stock_100)):
+        Exch_open1 += Stock_100[n][2] * nw_tab[n][1]
+        Exch_high1 += Stock_100[n][3] * nw_tab[n][1]
+        Exch_close1 += Stock_100[n][4] * nw_tab[n][1]
+        Exch_low1 += Stock_100[n][5] * nw_tab[n][1]
+    assert isclose(Exch_open,Exch_open1),"calculation of Exchange open value is wrong"
+    assert isclose(Exch_high,Exch_high1),"calculation of Exchange  high value is wrong"
+    assert isclose(Exch_close,Exch_close1),"calculation of Exchange close value is wrong"
+    assert isclose(Exch_low,Exch_low1),"calculation of Exchange low value is wrong"
+
+
+
 
 

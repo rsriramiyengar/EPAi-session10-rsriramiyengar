@@ -12,6 +12,9 @@ import time
 from collections import Counter
 import math
 from math import isclose
+import random
+from random  import uniform
+from random import randint
 fake = Faker()
 
 def calculateage(birthDate: "date of birthof person") -> "Returns Age in years":
@@ -121,3 +124,66 @@ def function_profile_data_dict_process(LIST_d: "List of dictionary"):
         blood_group_count_d[LIST_d[n]['blood_group']] = blood_group_count_d[LIST_d[n]['blood_group']] + 1
     largest_blood_type_d = (max(blood_group_count_d.items(), key=operator.itemgetter(1))[0])
     return average_age_d, oldest_person_age_d, mean_current_location_d, largest_blood_type_d
+
+
+Stock_weight_norm = namedtuple('Stock_weight_norm', ('name', 'nw'))
+Stock_weight_norm.__doc__ = 'Stock Weight Details for Day trade'
+Stock_weight_norm.name.__doc__ = 'Name of Stock'
+Stock_weight_norm.nw.__doc__ = 'Normilized weight of Stock that day'
+
+
+class Stock(namedtuple('Stock', ('name', 'symbol', 'open', 'high', 'close', 'low', 'weight'))):
+
+    @classmethod
+    def normilized_weight(cls, stocks) -> "returns normalized values for ":
+        'This class method calculates normalized weights for given set of weights '
+        if not all(isinstance(stock, cls) for stock in stocks):
+            raise ValueError('All items in sequence must be of type {}'.format(cls.__name__))
+        Total_weight = sum(stock[6] for stock in stocks)
+        normilized_weights = [Stock_weight_norm(stock.name, (stock.weight / Total_weight)) for stock in stocks]
+        return normilized_weights
+
+    @classmethod
+    def stock_ex_value(cls, stocks) -> "returns normalized values for ":
+        'This class method calculates normalized weights for given set of weights '
+        if not all(isinstance(stock, cls) for stock in stocks):
+            raise ValueError('All items in sequence must be of type {}'.format(cls.__name__))
+        normilized_weights = cls.normilized_weight(stocks)
+        Exch_open = sum(
+            s.open * norw.nw if s.name == norw.name else "error" for s, norw in zip(stocks, normilized_weights))
+        Exch_high = sum(
+            s.high * norw.nw if s.name == norw.name else "error" for s, norw in zip(stocks, normilized_weights))
+        Exch_close = sum(
+            s.close * norw.nw if s.name == norw.name else "error" for s, norw in zip(stocks, normilized_weights))
+        Exch_low = sum(
+            s.low * norw.nw if s.name == norw.name else "error" for s, norw in zip(stocks, normilized_weights))
+        return Exch_open, Exch_high, Exch_close, Exch_low
+
+
+Stock.__doc__ = 'Stock Detail for Day trade'
+Stock.name.__doc__ = 'Name of Stock'
+Stock.symbol.__doc__ = 'symbol of Stock'
+Stock.open.__doc__ = 'Opening Value of Stock that day'
+Stock.high.__doc__ = 'highest Value of Stock that day'
+Stock.close.__doc__ = 'closing highest Value of Stock that day'
+Stock.low.__doc__ = 'closing lowest Value of Stock that day'
+Stock.weight.__doc__ = 'weight Stock that day'
+
+
+def function_fstock_creation(count: "Number of stock to be created using faker"):
+    "Returns  profile stored in named tuple and dictionary in list for user defined count"
+    Stock_list=[]
+    Stock_list_dict=[]
+    for n in range(count):
+        name=fake.company()
+        symbol=name[:3]
+        low=uniform(100,5000)
+        high=uniform(low,5000)
+        open=uniform(low,high)
+        close=uniform(low,high)
+        weight=uniform(0.8,1.2)
+        Stock_list.append(Stock(name,symbol,open,high,close,low,weight))
+        Stock_list_dict.append({"name": name,"symbol" : symbol,"open":open,"high":high,"close":close,"low":low,"weight":weight})
+    return Stock_list,Stock_list_dict
+
+
