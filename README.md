@@ -37,9 +37,9 @@ Fprofile.blood_group.__doc__ = 'Blood group of Employees/User'
 Fprofile.current_location.__doc__ = 'Current location of Employees/User'
 
 ###  function_profile_creation (count: "Number of profile to be created using faker"):
-- "Returns  profile stored in named tuple and dictionary in list for user defined count"
+- "Returns  profile stored in  named_tuple and dictionary in tupple and list respecitvely  for user defined count"
 
-###  function_profile_data_tuple_process (LIST: "List of Named tuple"):
+###  function_profile_data_tuple_process (tuple: "tuple of Named tuple"):
     """
     This function returns following for given list of profiles stores in Namedtuple
     - Average age in given set of profiles
@@ -78,7 +78,7 @@ Fprofile.current_location.__doc__ = 'Current location of Employees/User'
 - Stock.weight.__doc__ = 'weight Stock that day'
 
 ###  function_fstock_creation(count: "Number of stock to be created using faker"):
-    "Returns  profile stored in named tuple in list for user defined count"
+    "Returns  profile stored in named tuple and dictionary in tuple and list respecitvely for user defined count"
 
 
 ## Functions used in Test File
@@ -106,7 +106,7 @@ Fprofile.current_location.__doc__ = 'Current location of Employees/User'
 
 ###  test_output_named_tuple_vs_dictionary():
     """
-    This Test checks speed of Named tuple vs dictionary for 10000 profiles and 100 runs
+    This Test checks speed of tuple of Named tuple vs List dictionary for 10000 profiles and 100 runs
     """
 
 ###  test_output_named_tuple_vs_dictionary():
@@ -116,7 +116,7 @@ Fprofile.current_location.__doc__ = 'Current location of Employees/User'
 
 ###  test_stock_named_tuple_functions():
     """
-    This Test Function checks the output of stock named tupple and its class method for 100 stocks.
+    This Test Function checks the output of stock named tuple and its class method for 100 stocks.
     """
 
 ***

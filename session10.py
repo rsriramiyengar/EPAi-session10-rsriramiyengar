@@ -70,7 +70,7 @@ Fprofile.blood_group.__doc__ = 'Blood group of Employees/User'
 Fprofile.current_location.__doc__ = 'Current location of Employees/User'
 
 def function_profile_creation(count: "Number of profile to be created using faker"):
-    "Returns  profile stored in named tuple and dictionary in list for user defined count"
+    "Returns  profile stored in  named_tuple and dictionary in tupple and list respecitvely  for user defined count"
     LIST_tuple = []
     LIST_dict = []
     for n in range(count):
@@ -79,9 +79,9 @@ def function_profile_creation(count: "Number of profile to be created using fake
         LIST_tuple.append(Fprofile(x['name'], x['sex'], x['birthdate'], x['blood_group'], x['current_location']))
         # Dictionary based
         LIST_dict.append({'name': x['name'], 'sex': x['sex'], 'birthdate': x['birthdate'], 'blood_group': x['blood_group'],'current_location': x['current_location']})
-    return LIST_tuple, LIST_dict
+    return tuple(LIST_tuple), LIST_dict
 
-def function_profile_data_tuple_process(LIST: "List of Named tuple"):
+def function_profile_data_tuple_process(tuple: "tuple of Named tuple"):
     """
     This function returns following for given list of profiles stores in Namedtuple
     - Average age in given set of profiles
@@ -89,10 +89,10 @@ def function_profile_data_tuple_process(LIST: "List of Named tuple"):
     -mean location of  in given set of profiles
     -largest_blood_type  in given set of profiles
     """
-    average_age = Fprofile.aver_age(LIST)
-    oldest_person_age = Fprofile.max_age(LIST)
-    mean_current_location = Fprofile.mean_current_location(LIST)
-    largest_blood_type = Fprofile.largest_blood_type(LIST)
+    average_age = Fprofile.aver_age(tuple)
+    oldest_person_age = Fprofile.max_age(tuple)
+    mean_current_location = Fprofile.mean_current_location(tuple)
+    largest_blood_type = Fprofile.largest_blood_type(tuple)
     return average_age, oldest_person_age, mean_current_location, largest_blood_type
 
 def function_profile_data_dict_process(LIST_d: "List of dictionary"):
@@ -141,7 +141,7 @@ class Stock(namedtuple('Stock', ('name', 'symbol', 'open', 'high', 'close', 'low
             raise ValueError('All items in sequence must be of type {}'.format(cls.__name__))
         Total_weight = sum(stock[6] for stock in stocks)
         normilized_weights = [Stock_weight_norm(stock.name, (stock.weight / Total_weight)) for stock in stocks]
-        return normilized_weights
+        return tuple(normilized_weights)
 
     @classmethod
     def stock_ex_value(cls, stocks) -> "returns normalized values for ":
@@ -171,7 +171,7 @@ Stock.weight.__doc__ = 'weight Stock that day'
 
 
 def function_fstock_creation(count: "Number of stock to be created using faker"):
-    "Returns  profile stored in named tuple and dictionary in list for user defined count"
+    "Returns  profile stored in named tuple and dictionary in tuple and list respecitvely for user defined count"
     Stock_list=[]
     Stock_list_dict=[]
     for n in range(count):
@@ -184,6 +184,6 @@ def function_fstock_creation(count: "Number of stock to be created using faker")
         weight=uniform(0.8,1.2)
         Stock_list.append(Stock(name,symbol,open,high,close,low,weight))
         Stock_list_dict.append({"name": name,"symbol" : symbol,"open":open,"high":high,"close":close,"low":low,"weight":weight})
-    return Stock_list,Stock_list_dict
+    return tuple(Stock_list),Stock_list_dict
 
 

@@ -85,26 +85,26 @@ def test_creation_profile():
     """
     This Test function checks if created profile are stored properly
     """
-    LIST_tuple, LIST_dict = function_profile_creation(1)
-    assert LIST_tuple[0][0]==LIST_dict[0]['name'] ,"Name is not getting stored properly"
-    assert LIST_tuple[0][1] == LIST_dict[0]['sex'], "sex of profile is not getting stored properly"
-    assert LIST_tuple[0][2] == LIST_dict[0]['birthdate'], "birthdate of profile is not getting stored properly"
-    assert LIST_tuple[0][3] == LIST_dict[0]['blood_group'], "blood_group of profile is not getting stored properly"
-    assert LIST_tuple[0][4] == LIST_dict[0]['current_location'], "current_location' of profile is not getting stored properly"
+    tuple_NT, LIST_dict = function_profile_creation(1)
+    assert tuple_NT[0][0]==LIST_dict[0]['name'] ,"Name is not getting stored properly"
+    assert tuple_NT[0][1] == LIST_dict[0]['sex'], "sex of profile is not getting stored properly"
+    assert tuple_NT[0][2] == LIST_dict[0]['birthdate'], "birthdate of profile is not getting stored properly"
+    assert tuple_NT[0][3] == LIST_dict[0]['blood_group'], "blood_group of profile is not getting stored properly"
+    assert tuple_NT[0][4] == LIST_dict[0]['current_location'], "current_location' of profile is not getting stored properly"
 
 
 def test_output_named_tuple_vs_dictionary():
     """
-    This Test checks speed of Named tuple vs dictionary for 10000 profiles and 100 runs
+    This Test checks speed of tuple of Named tuple vs List dictionary for 10000 profiles and 100 runs
     """
     Num_profile = 10000
-    Num_run = 100
-    LIST_tuple, LIST_dict = function_profile_creation(Num_profile)
+    Num_run = 1000
+    tuple_NT, LIST_dict = function_profile_creation(Num_profile)
     ### Named Tuple
     start1 = time.perf_counter()
     for n in range(Num_run):
         average_age, oldest_person_age, mean_current_location, largest_blood_type = function_profile_data_tuple_process(
-            LIST_tuple)
+            tuple_NT)
     end1 = time.perf_counter()
     delta1 = (end1 - start1) / Num_run
     ####
@@ -127,18 +127,18 @@ def test_output_named_tuple_vs_dictionary():
     """
     This Test checks content of Named tuple vs dictionary for 1 profiles.
     """
-    Stock_list,Stock_list_dict = function_fstock_creation(1)
-    assert Stock_list[0][0]==Stock_list_dict[0]['name'] ,"Name is not getting stored properly"
-    assert Stock_list[0][1] == Stock_list_dict[0]["symbol"], "symbol is not getting stored properly"
-    assert Stock_list[0][2] == Stock_list_dict[0]["open"], "open is not getting stored properly"
-    assert Stock_list[0][3] == Stock_list_dict[0]["high"], "high is not getting stored properly"
-    assert Stock_list[0][4] == Stock_list_dict[0]["close"], "close is not getting stored properly"
-    assert Stock_list[0][5] == Stock_list_dict[0]["low"], "low is not getting stored properly"
-    assert Stock_list[0][6] == Stock_list_dict[0]["weight"], "weight is not getting stored properly"
+    Stock_tuple,Stock_list_dict = function_fstock_creation(1)
+    assert Stock_tuple[0][0]==Stock_list_dict[0]['name'] ,"Name is not getting stored properly"
+    assert Stock_tuple[0][1] == Stock_list_dict[0]["symbol"], "symbol is not getting stored properly"
+    assert Stock_tuple[0][2] == Stock_list_dict[0]["open"], "open is not getting stored properly"
+    assert Stock_tuple[0][3] == Stock_list_dict[0]["high"], "high is not getting stored properly"
+    assert Stock_tuple[0][4] == Stock_list_dict[0]["close"], "close is not getting stored properly"
+    assert Stock_tuple[0][5] == Stock_list_dict[0]["low"], "low is not getting stored properly"
+    assert Stock_tuple[0][6] == Stock_list_dict[0]["weight"], "weight is not getting stored properly"
 
 def test_stock_named_tuple_functions():
     """
-    This Test Function checks the output of stock named tupple and its class method for 100 stocks.
+    This Test Function checks the output of stock named tuple and its class method for 100 stocks.
     """
     Stock_100, Stock_list_dic = function_fstock_creation(100)
     nw_tab = Stock.normilized_weight(Stock_100)
